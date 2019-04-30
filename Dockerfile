@@ -45,11 +45,12 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
     && rm /${OPENCV_VERSION}.zip \
     && rm -r /opencv-${OPENCV_VERSION}
 
-RUN pip3 install jupyter matplotlib 
-
 RUN useradd -d /home/dev -m dev
 USER dev
 
 WORKDIR /home/dev
+
+COPY requirements.txt ./
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 CMD ["jupyter", "notebook", "--ip=0.0.0.0"]
