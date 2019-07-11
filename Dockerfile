@@ -45,6 +45,10 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
     && rm /${OPENCV_VERSION}.zip \
     && rm -r /opencv-${OPENCV_VERSION}
 
+# ImageMagick
+RUN apk --update add imagemagick && \
+    rm -rf /var/cache/apk/*
+
 RUN pip3 install tensorflow \
     opencv-python \
     jupyter \
